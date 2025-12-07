@@ -320,3 +320,57 @@ body::after {
     0% { opacity: 0.6; transform: scale(0.5); }
     100% { opacity: 0; transform: scale(2.6); }
 }
+
+
+/* انفجار القلب Old Money */
+#heart-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 999;
+}
+
+/* شكل القلب الأساسي */
+.heart {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #8b4c3c 0%, #5a2f26 70%);
+    transform: rotate(45deg);
+    opacity: 0.9;
+    animation: burst 1.6s ease-out forwards;
+}
+
+/* شكل القلب — تفاصيل Old Money */
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.heart::before { top: -9px; left: 0; }
+.heart::after { left: -9px; top: 0; }
+
+/* الانيميشن */
+@keyframes burst {
+    0% {
+        transform: scale(0.2) rotate(45deg);
+        opacity: 0.9;
+        filter: blur(1px);
+    }
+    50% {
+        transform: scale(1.8) rotate(45deg);
+        opacity: 0.6;
+        filter: blur(2px);
+    }
+    100% {
+        transform: scale(3.2) rotate(45deg);
+        opacity: 0;
+        filter: blur(4px);
+    }
+}
