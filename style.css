@@ -1,67 +1,123 @@
+/* الخلفية العامة */
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     direction: rtl;
-    font-family: "Tajawal", sans-serif;
+    background: #e8dfd3;
+    font-family: "Tajawal", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
 }
 
-/* خلفية أولد ستايل — Grid */
-.retro-grid {
-    position: absolute;
+/* خلفية ورقية بسيطة بدون صورة خارجية */
+body::before {
+    content: "";
+    position: fixed;
     inset: 0;
     background:
-        linear-gradient(rgba(255, 0, 150, 0.4) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 0, 150, 0.4) 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: move-grid 8s linear infinite;
-    filter: blur(1px);
-    opacity: 0.3;
-}
-
-/* حركة الخلفية */
-@keyframes move-grid {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 40px; }
-}
-
-/* المحتوى */
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    animation: fade-in 2s ease forwards;
-}
-
-.title {
-    font-size: 42px;
-    color: #ff009d;
-    text-shadow: 0 0 10px #ff009d, 0 0 20px #ff33bb, 0 0 40px #ff66cc;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 22px;
-    color: #ffffff;
+        radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(0,0,0,0.15), transparent 60%),
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,0.25) 0px,
+            rgba(255,255,255,0.25) 1px,
+            rgba(0,0,0,0.02) 2px,
+            rgba(0,0,0,0.02) 3px
+        );
     opacity: 0;
-    animation: fade-subtitle 3s ease forwards 1s;
+    animation: fadePaper 1.4s ease forwards;
+    z-index: 0;
 }
 
-/* أنيميشن دخول */
-@keyframes fade-in {
+@keyframes fadePaper {
+    to { opacity: 1; }
+}
+
+.content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+/* اللوقو العلوي */
+.logo {
+    font-size: 40px;
+    letter-spacing: 0.35em;
+    color: #222222;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: logoIn 1.8s ease forwards 0.35s;
+}
+
+/* أنيميشن دخول اللوقو */
+@keyframes logoIn {
     0% {
         opacity: 0;
-        transform: translate(-50%, -55%);
+        transform: translateY(22px);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(0);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        transform: translateY(2px);
     }
 }
 
-@keyframes fade-subtitle {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+/* لمعة خفيفة تمر على اللوقو */
+.logo::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -80%;
+    width: 60%;
+    height: 1.4em;
+    transform: translateY(-50%) skewX(-20deg);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.75),
+        transparent
+    );
+    opacity: 0;
+    pointer-events: none;
+    animation: logoShine 1.6s ease-out 1.3s forwards;
+}
+
+@keyframes logoShine {
+    0% {
+        opacity: 0;
+        left: -80%;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        left: 130%;
+    }
+}
+
+/* النص أسفل اللوقو */
+.subtitle {
+    font-size: 18px;
+    color: #4b4b4b;
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: subtitleIn 1.4s ease forwards 1.4s;
+}
+
+@keyframes subtitleIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
