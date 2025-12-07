@@ -272,3 +272,51 @@ body::after {
     0% { opacity: 0.6; transform: scale(0.5); }
     100% { opacity: 0; transform: scale(2.6); }
 }
+
+/* تأثير انفجار القلب Old Money */
+.heart-burst {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #7a4635, #d4b89f);
+    clip-path: path("M8 2 C8 0 12 0 12 4 C12 7 8 10 8 12 C8 10 4 7 4 4 C4 0 8 0 8 2 Z");
+    opacity: 0.9;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.6);
+    animation: burstHeart 1.4s ease-out forwards;
+}
+
+@keyframes burstHeart {
+    0% {
+        transform: translate(-50%, -50%) scale(0.6);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(2.2);
+        opacity: 0.6;
+        filter: blur(1px);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3.6);
+        opacity: 0;
+        filter: blur(3px);
+    }
+}
+
+/* وميض ذهبي بسيط بعد الانفجار */
+.gold-flash {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,215,160,0.45), transparent 70%);
+    opacity: 0;
+    animation: goldFlash 1.4s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes goldFlash {
+    0% { opacity: 0.6; transform: scale(0.5); }
+    100% { opacity: 0; transform: scale(2.6); }
+}
