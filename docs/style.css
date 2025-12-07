@@ -1,0 +1,274 @@
+/* خلفية Old Money */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3ede4; /* ivory */
+    overflow: hidden;
+    font-family: "Tajawal", serif;
+    position: relative;
+}
+
+/* طبقة الورق الأساسية */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0,0,0,0.015) 0px,
+            rgba(0,0,0,0.015) 1px,
+            transparent 2px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0,0,0,0.018) 0px,
+            rgba(0,0,0,0.018) 1px,
+            transparent 3px
+        ),
+        radial-gradient(circle at top left, rgba(255,255,255,0.85), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(0,0,0,0.1), transparent 80%);
+    opacity: 0;
+    filter: blur(6px);
+    transition: opacity 1.6s ease, filter 2s ease;
+    z-index: 0;
+}
+
+/* حركة ضوء ذهبية راقية جداً */
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 0%, 
+        rgba(255,215,140,0.22) 50%, 
+        transparent 100%
+    );
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transform: translateX(-140%);
+    animation: goldSweep 4s ease-out 1.5s forwards;
+}
+
+@keyframes goldSweep {
+    to {
+        opacity: 1;
+        transform: translateX(140%);
+    }
+}
+
+/* المحتوى */
+.content {
+    position: relative;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(35px);
+    filter: blur(6px);
+    z-index: 2;
+    transition: all 1.7s ease-out;
+}
+
+/* لوقو Old Money */
+.logo {
+    font-size: 44px;
+    letter-spacing: 0.32em;
+    color: #2a2a2a;
+    font-weight: 300;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+/* تأثير emboss للنص */
+.logo {
+    text-shadow:
+        1px 1px 2px rgba(255,255,255,0.8),
+        -1px -1px 2px rgba(0,0,0,0.1);
+}
+
+/* النص السفلي */
+.subtitle {
+    font-size: 18px;
+    color: #4b4b4b;
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap');
+
+.subtitle {
+    font-family: 'Scheherazade New', serif;
+    font-size: 22px;
+    color: #4b4b4b;
+    letter-spacing: 0.02em; /* مسافة بسيطة */
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+
+.subtitle {
+    font-family: 'Scheherazade New', serif;
+    font-size: 22px;
+    color: #3a3129;
+    opacity: 0;
+    transform: translateY(6px);
+    font-weight: 700;
+    text-shadow: 
+        0 1px 1px rgba(255,255,255,0.6),
+        0 -1px 1px rgba(0,0,0,0.07);
+}
+
+
+/* خط Old Money العربي */
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap');
+
+/* خلفية Old Money (ورق فاخر) */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3ede4; /* ivory rich */
+    overflow: hidden;
+    font-family: "Tajawal", sans-serif;
+    position: relative;
+}
+
+/* Texture + إضاءة */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0,0,0,0.015) 0px,
+            rgba(0,0,0,0.015) 1px,
+            transparent 2px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0,0,0,0.018) 0px,
+            rgba(0,0,0,0.018) 1px,
+            transparent 3px
+        ),
+        radial-gradient(circle at top left, rgba(255,255,255,0.85), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(0,0,0,0.1), transparent 80%);
+    opacity: 0;
+    filter: blur(6px);
+    transition: opacity 1.6s ease, filter 2s ease;
+    z-index: 0;
+}
+
+/* ضوء ذهبي فاخر */
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 0%, 
+        rgba(255,215,140,0.22) 50%, 
+        transparent 100%
+    );
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transform: translateX(-140%);
+    animation: goldSweep 4s ease-out 1.5s forwards;
+}
+
+@keyframes goldSweep {
+    to {
+        opacity: 1;
+        transform: translateX(140%);
+    }
+}
+
+/* المحتوى */
+.content {
+    position: relative;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(35px);
+    filter: blur(6px);
+    z-index: 2;
+    transition: all 1.7s ease-out;
+}
+
+/* لوقو Old Money */
+.logo {
+    font-size: 44px;
+    letter-spacing: 0.32em;
+    color: #2a2a2a;
+    font-weight: 300;
+    margin-bottom: 12px;
+    position: relative;
+    text-shadow:
+        1px 1px 2px rgba(255,255,255,0.8),
+        -1px -1px 2px rgba(0,0,0,0.1);
+}
+
+/* النص العربي Old Money */
+.subtitle {
+    font-family: 'Scheherazade New', serif;
+    font-size: 22px;
+    color: #3a3129;
+    opacity: 0;
+    transform: translateY(6px);
+    text-shadow: 
+        0 1px 1px rgba(255,255,255,0.6),
+        0 -1px 1px rgba(0,0,0,0.07);
+}
+
+
+/* تأثير انفجار القلب Old Money */
+.heart-burst {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #7a4635, #d4b89f);
+    clip-path: path("M8 2 C8 0 12 0 12 4 C12 7 8 10 8 12 C8 10 4 7 4 4 C4 0 8 0 8 2 Z");
+    opacity: 0.9;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.6);
+    animation: burstHeart 1.4s ease-out forwards;
+}
+
+@keyframes burstHeart {
+    0% {
+        transform: translate(-50%, -50%) scale(0.6);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(2.2);
+        opacity: 0.6;
+        filter: blur(1px);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3.6);
+        opacity: 0;
+        filter: blur(3px);
+    }
+}
+
+/* وميض ذهبي بسيط بعد الانفجار */
+.gold-flash {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,215,160,0.45), transparent 70%);
+    opacity: 0;
+    animation: goldFlash 1.4s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes goldFlash {
+    0% { opacity: 0.6; transform: scale(0.5); }
+    100% { opacity: 0; transform: scale(2.6); }
+}
