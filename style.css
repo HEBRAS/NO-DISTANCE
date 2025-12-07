@@ -107,3 +107,16 @@ body::after {
     opacity: 0;
     transform: translateY(6px);
 }
+
+
+.subtitle {
+    font-family: 'Scheherazade New', serif;
+    font-size: 22px;
+    color: #3a3129;
+    opacity: 0;
+    transform: translateY(6px);
+    font-weight: 700;
+    text-shadow: 
+        0 1px 1px rgba(255,255,255,0.6),
+        0 -1px 1px rgba(0,0,0,0.07);
+}
