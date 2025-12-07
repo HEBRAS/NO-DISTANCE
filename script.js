@@ -53,3 +53,30 @@ window.onload = () => {
         );
     }, 1500);
 };
+
+
+window.onload = () => {
+
+    const content = document.querySelector(".content");
+    const subtitle = document.querySelector(".subtitle");
+
+    // خلفية الورق تتحسن تدريجياً
+    setTimeout(() => {
+        document.body.style.setProperty("opacity", "1");
+        document.body.querySelector("body::before");
+    }, 100);
+
+    // دخول المحتوى
+    setTimeout(() => {
+        content.style.opacity = "1";
+        content.style.filter = "blur(0)";
+        content.style.transform = "translateY(0)";
+    }, 800);
+
+    // ظهور السطر الثاني
+    setTimeout(() => {
+        subtitle.style.opacity = "1";
+        subtitle.style.transform = "translateY(0)";
+        subtitle.style.filter = "blur(0)";
+    }, 1500);
+};
