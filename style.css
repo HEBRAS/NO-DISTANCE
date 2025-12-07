@@ -1,4 +1,3 @@
-/* الخلفية العامة */
 body {
     margin: 0;
     padding: 0;
@@ -8,11 +7,11 @@ body {
     align-items: center;
     direction: rtl;
     background: #e8dfd3;
-    font-family: "Tajawal", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: "Tajawal", sans-serif;
     overflow: hidden;
 }
 
-/* خلفية ورقية بسيطة بدون صورة خارجية */
+/* خلفية ورقية */
 body::before {
     content: "";
     position: fixed;
@@ -42,7 +41,6 @@ body::before {
     z-index: 1;
 }
 
-/* اللوقو العلوي */
 .logo {
     font-size: 40px;
     letter-spacing: 0.35em;
@@ -54,7 +52,6 @@ body::before {
     animation: logoIn 1.8s ease forwards 0.35s;
 }
 
-/* أنيميشن دخول اللوقو */
 @keyframes logoIn {
     0% {
         opacity: 0;
@@ -70,7 +67,6 @@ body::before {
     }
 }
 
-/* لمعة خفيفة تمر على اللوقو */
 .logo::after {
     content: "";
     position: absolute;
@@ -79,32 +75,18 @@ body::before {
     width: 60%;
     height: 1.4em;
     transform: translateY(-50%) skewX(-20deg);
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.75),
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
     opacity: 0;
     pointer-events: none;
     animation: logoShine 1.6s ease-out 1.3s forwards;
 }
 
 @keyframes logoShine {
-    0% {
-        opacity: 0;
-        left: -80%;
-    }
-    20% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        left: 130%;
-    }
+    0% { opacity: 0; left: -80%; }
+    20% { opacity: 1; }
+    100% { opacity: 0; left: 130%; }
 }
 
-/* النص أسفل اللوقو */
 .subtitle {
     font-size: 18px;
     color: #4b4b4b;
