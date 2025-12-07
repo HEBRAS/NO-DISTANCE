@@ -1,53 +1,98 @@
+/* خلفية Old Money */
 body {
     margin: 0;
-    padding: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    direction: rtl;
-    background: #e7dfd3;
-    font-family: "Tajawal", sans-serif;
+    background: #f3ede4; /* ivory */
     overflow: hidden;
+    font-family: "Tajawal", serif;
     position: relative;
 }
 
-/* ورق فخم */
+/* طبقة الورق الأساسية */
 body::before {
     content: "";
-    position: fixed;
+    position: absolute;
     inset: 0;
     background:
         repeating-linear-gradient(
-            45deg,
-            rgba(0,0,0,0.03) 0px,
-            rgba(0,0,0,0.03) 1px,
-            rgba(255,255,255,0.06) 2px,
-            rgba(255,255,255,0.06) 3px
+            0deg,
+            rgba(0,0,0,0.015) 0px,
+            rgba(0,0,0,0.015) 1px,
+            transparent 2px
         ),
-        radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 70%),
-        radial-gradient(circle at bottom right, rgba(0,0,0,0.18), transparent 80%);
+        repeating-linear-gradient(
+            90deg,
+            rgba(0,0,0,0.018) 0px,
+            rgba(0,0,0,0.018) 1px,
+            transparent 3px
+        ),
+        radial-gradient(circle at top left, rgba(255,255,255,0.85), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(0,0,0,0.1), transparent 80%);
     opacity: 0;
     filter: blur(6px);
-    transition: opacity 1.3s ease, filter 1.6s ease;
+    transition: opacity 1.6s ease, filter 2s ease;
+    z-index: 0;
 }
 
+/* حركة ضوء ذهبية راقية جداً */
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 0%, 
+        rgba(255,215,140,0.22) 50%, 
+        transparent 100%
+    );
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transform: translateX(-140%);
+    animation: goldSweep 4s ease-out 1.5s forwards;
+}
+
+@keyframes goldSweep {
+    to {
+        opacity: 1;
+        transform: translateX(140%);
+    }
+}
+
+/* المحتوى */
 .content {
-    opacity: 0;
-    transform: translateY(25px) scale(0.97);
-    filter: blur(6px);
-    transition: all 1.3s ease;
+    position: relative;
     text-align: center;
+    opacity: 0;
+    transform: translateY(35px);
+    filter: blur(6px);
+    z-index: 2;
+    transition: all 1.7s ease-out;
 }
 
+/* لوقو Old Money */
 .logo {
-    font-size: 42px;
-    letter-spacing: 0.35em;
-    color: #222;
-    margin-bottom: 8px;
+    font-size: 44px;
+    letter-spacing: 0.32em;
+    color: #2a2a2a;
+    font-weight: 300;
+    margin-bottom: 12px;
+    position: relative;
 }
 
+/* تأثير emboss للنص */
+.logo {
+    text-shadow:
+        1px 1px 2px rgba(255,255,255,0.8),
+        -1px -1px 2px rgba(0,0,0,0.1);
+}
+
+/* النص السفلي */
 .subtitle {
     font-size: 18px;
-    color: #4a4a4a;
+    color: #4b4b4b;
+    opacity: 0;
+    transform: translateY(6px);
 }
