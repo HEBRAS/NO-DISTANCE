@@ -80,3 +80,33 @@ window.onload = () => {
         subtitle.style.filter = "blur(0)";
     }, 1500);
 };
+
+
+// انفجار قلب Old Money عند الضغط على الشاشة
+document.addEventListener("click", (e) => {
+
+    // إنشاء القلب
+    const heart = document.createElement("div");
+    heart.classList.add("heart-burst");
+    heart.style.left = `${e.clientX}px`;
+    heart.style.top = `${e.clientY}px`;
+
+    document.body.appendChild(heart);
+
+    // إنشاء الوميض الذهبي
+    const flash = document.createElement("div");
+    flash.classList.add("gold-flash");
+    flash.style.left = `${e.clientX - 45}px`;
+    flash.style.top = `${e.clientY - 45}px`;
+    document.body.appendChild(flash);
+
+    // حذف العناصر بعد الانيميشن
+    setTimeout(() => {
+        heart.remove();
+        flash.remove();
+
+        // 🔥 انتقال للصفحة التالية (اختياري)
+        // window.location.href = "next.html";
+
+    }, 1500);
+});
