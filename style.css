@@ -6,100 +6,48 @@ body {
     justify-content: center;
     align-items: center;
     direction: rtl;
-    background: #e8dfd3;
+    background: #e7dfd3;
     font-family: "Tajawal", sans-serif;
     overflow: hidden;
+    position: relative;
 }
 
-/* خلفية ورقية */
+/* ورق فخم */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(0,0,0,0.15), transparent 60%),
         repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.25) 0px,
-            rgba(255,255,255,0.25) 1px,
-            rgba(0,0,0,0.02) 2px,
-            rgba(0,0,0,0.02) 3px
-        );
+            45deg,
+            rgba(0,0,0,0.03) 0px,
+            rgba(0,0,0,0.03) 1px,
+            rgba(255,255,255,0.06) 2px,
+            rgba(255,255,255,0.06) 3px
+        ),
+        radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(0,0,0,0.18), transparent 80%);
     opacity: 0;
-    animation: fadePaper 1.4s ease forwards;
-    z-index: 0;
-}
-
-@keyframes fadePaper {
-    to { opacity: 1; }
+    filter: blur(6px);
+    transition: opacity 1.3s ease, filter 1.6s ease;
 }
 
 .content {
-    position: relative;
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+    filter: blur(6px);
+    transition: all 1.3s ease;
     text-align: center;
-    z-index: 1;
 }
 
 .logo {
-    font-size: 40px;
+    font-size: 42px;
     letter-spacing: 0.35em;
-    color: #222222;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    opacity: 0;
-    transform: translateY(16px);
-    animation: logoIn 1.8s ease forwards 0.35s;
-}
-
-@keyframes logoIn {
-    0% {
-        opacity: 0;
-        transform: translateY(22px);
-    }
-    70% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(2px);
-    }
-}
-
-.logo::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -80%;
-    width: 60%;
-    height: 1.4em;
-    transform: translateY(-50%) skewX(-20deg);
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
-    opacity: 0;
-    pointer-events: none;
-    animation: logoShine 1.6s ease-out 1.3s forwards;
-}
-
-@keyframes logoShine {
-    0% { opacity: 0; left: -80%; }
-    20% { opacity: 1; }
-    100% { opacity: 0; left: 130%; }
+    color: #222;
+    margin-bottom: 8px;
 }
 
 .subtitle {
     font-size: 18px;
-    color: #4b4b4b;
-    margin-top: 4px;
-    letter-spacing: 0.06em;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: subtitleIn 1.4s ease forwards 1.4s;
-}
-
-@keyframes subtitleIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    color: #4a4a4a;
 }
