@@ -1,36 +1,67 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #0e0e0e, #1f1f1f);
-    font-family: "Tajawal", sans-serif;
+    overflow: hidden;
     direction: rtl;
-    height: 100vh;
+    font-family: "Tajawal", sans-serif;
 }
 
-.overlay {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* خلفية أولد ستايل — Grid */
+.retro-grid {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(rgba(255, 0, 150, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 150, 0.4) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: move-grid 8s linear infinite;
+    filter: blur(1px);
+    opacity: 0.3;
 }
 
-.card {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    padding: 40px 50px;
+/* حركة الخلفية */
+@keyframes move-grid {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 40px; }
+}
+
+/* المحتوى */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    animation: fade-in 2s ease forwards;
 }
 
-.card h1 {
-    font-size: 34px;
+.title {
+    font-size: 42px;
+    color: #ff009d;
+    text-shadow: 0 0 10px #ff009d, 0 0 20px #ff33bb, 0 0 40px #ff66cc;
     margin-bottom: 10px;
-    color: #ffffff;
 }
 
-.card p {
-    font-size: 20px;
-    color: #e4e4e4;
+.subtitle {
+    font-size: 22px;
+    color: #ffffff;
+    opacity: 0;
+    animation: fade-subtitle 3s ease forwards 1s;
+}
+
+/* أنيميشن دخول */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fade-subtitle {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
