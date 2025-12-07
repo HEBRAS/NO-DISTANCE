@@ -111,7 +111,6 @@ document.addEventListener("click", (e) => {
     }, 1500);
 });
 
-
 // انيميشن انفجار القلب عند الضغط
 document.addEventListener("click", (e) => {
     const container = document.getElementById("heart-container");
@@ -129,3 +128,4 @@ document.addEventListener("click", (e) => {
         heart.remove();
     }, 1600);
 });
+
