@@ -96,3 +96,14 @@ body::after {
     opacity: 0;
     transform: translateY(6px);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap');
+
+.subtitle {
+    font-family: 'Scheherazade New', serif;
+    font-size: 22px;
+    color: #4b4b4b;
+    letter-spacing: 0.02em; /* مسافة بسيطة */
+    opacity: 0;
+    transform: translateY(6px);
+}
