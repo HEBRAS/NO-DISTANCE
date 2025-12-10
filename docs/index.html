@@ -1,6 +1,106 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<meta charset="UTF-8">
+<title>رسالة مجد</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  background: #200000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  width: 360px;
+}
+
+/* الصورة الأساسية */
+.base-img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+/* الكرت اللي يتحرك */
+.card {
+  position: absolute;
+  width: 63%;
+  left: 50%;
+  top: 57%;
+  transform: translateX(-50%);
+  transition: top 0.9s ease-in-out;
+  cursor: pointer;
+}
+
+/* عند السحب */
+.card.pull {
+  top: -5%;
+}
+
+/* الرسالة الطويلة */
+.message {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background: rgba(255,255,255,0.95);
+  padding: 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.8;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- الصورة الرئيسية EXACT نفسها -->
+  <img class="base-img" src="https://i.postimg.cc/GHFx2Whb/da30284f.png">
+
+  <!-- الكرت اللي رح ينسحب (شفاف لأنه فوق الصورة الأصلية) -->
+  <img class="card" id="card" src="https://i.postimg.cc/GHFx2Whb/da30284f.png" style="clip-path: inset(42% 22% 40% 22%);">
+
+  <!-- الرسالة تظهر بعد سحب الكرت -->
+  <div class="message" id="msg">
+    من بين كل الطرق اللي مشيت فيها، كان طريقك أنت هو الطريق الوحيد  
+    اللي حسّسني إنّي وصلت… وصلت لراحة ما عرفتها من قبل،  
+    ولحب ما مرّ على قلبي مثله.  
+    وجودك يغيّر يومي، يغيّرني، يخليني أحس إن الدنيا صارت ألطف.  
+    ولو مهما كانت المسافات… يبقى قلبي واقف عند بابك.  
+    <br><br>
+    مجد ❤️
+  </div>
+
+</div>
+
+<script>
+const card = document.getElementById("card");
+const msg  = document.getElementById("msg");
+
+card.addEventListener("click", () => {
+  card.classList.add("pull");
+  
+  setTimeout(() => {
+    msg.style.display = "block";
+  }, 900);
+});
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رسالة من مازد</title>
