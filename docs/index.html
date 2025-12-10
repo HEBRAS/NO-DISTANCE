@@ -1,21 +1,311 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NO DISTANCE</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>رسالة من مجد</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- خطوط جميلة للعناوين والنص -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #3a0909 0, #140203 50%, #050000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f7f2e9;
+    }
+
+    .scene {
+      perspective: 1600px;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: min(340px, 90vw);
+      height: min(440px, 115vw);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* الخلفية العامة للظرف (جلد بقري مثل الصورة) */
+    .envelope-base {
+      position: absolute;
+      inset: 0;
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow:
+        0 40px 60px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      /* TODO: ضع رابط صورة الظرف هنا بدل example.com */
+      background-image: url("https://example.com/your-envelope-image.jpg");
+    }
+
+    /* فلتر خفيف يغمّق الخلفية */
+    .envelope-base::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.45));
+      pointer-events: none;
+    }
+
+    /* الجزء السفلي من الظرف */
+    .envelope-pocket {
+      position: absolute;
+      inset: 45% 0 0 0;
+      background: inherit;
+      background-size: cover;
+      background-position: center bottom;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    /* الغطاء (الفلاپ) */
+    .envelope-flap {
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      background-size: cover;
+      background-position: center top;
+      transform-origin: top center;
+      transform: rotateX(0deg);
+      transition: transform 0.8s ease-in-out;
+      clip-path: polygon(0 0, 50% 40%, 100% 0, 100% 65%, 0 65%);
+      z-index: 3;
+    }
+
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(-180deg);
+    }
+
+    /* كلمة NO DISTANCE أمام الظرف */
+    .envelope-title {
+      position: absolute;
+      inset-inline: 0;
+      bottom: 26%;
+      text-align: center;
+      letter-spacing: 0.22em;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      z-index: 4;
+      color: #ffffff;
+      mix-blend-mode: screen;
+    }
+
+    /* الورقة الداخلية (الرسالة) ثلاثية الأبعاد */
+    .letter {
+      position: absolute;
+      left: 50%;
+      bottom: 10%;
+      width: 82%;
+      height: 60%;
+      transform: translateX(-50%) translateY(45%) translateZ(0) rotateX(90deg);
+      transform-origin: bottom center;
+      transform-style: preserve-3d;
+      transition:
+        transform 0.95s ease-in-out 0.15s,
+        box-shadow 0.3s ease-in-out 0.15s;
+      z-index: 2;
+    }
+
+    .envelope-wrapper.open .letter {
+      transform: translateX(-50%) translateY(0%) translateZ(40px) rotateX(0deg);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    .letter-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .letter.flipped .letter-inner {
+      transform: rotateY(180deg);
+    }
+
+    .letter-side {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: #f7f0dd;
+      backface-visibility: hidden;
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .letter-side.front {
+      background: #f8f0db;
+    }
+
+    .letter-side.front::before {
+      /* حواف ناعمة تشبه الكرت */
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      pointer-events: none;
+    }
+
+    .letter-side.back {
+      transform: rotateY(180deg);
+      background: #f4e8cf;
+      overflow: hidden;
+    }
+
+    .letter-greeting {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #492417;
+    }
+
+    .letter-small {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 4px;
+      color: #5c3423;
+    }
+
+    .letter-name {
+      font-size: 0.95rem;
+      margin-top: 6px;
+      color: #4b2315;
+    }
+
+    /* النص الطويل في الخلف */
+    .letter-back-title {
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #4b2315;
+    }
+
+    .letter-back-text {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: #5a3323;
+      overflow-y: auto;
+      padding-inline-end: 6px;
+    }
+
+    .hint {
+      position: absolute;
+      inset-inline: 0;
+      bottom: -32px;
+      text-align: center;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .hint span {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 480px) {
+      .letter-side {
+        padding: 22px 20px;
+      }
+      .letter-greeting {
+        font-size: 1.2rem;
+      }
+      .letter-back-text {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="scene">
+    <div class="envelope-wrapper" id="envelope">
+      <div class="envelope-base">
+        <div class="envelope-pocket"></div>
+        <div class="envelope-flap"></div>
+      </div>
 
-    <div class="content">
-        <h1 class="logo">NO DISTANCE</h1>
-        <p class="subtitle">أهلاً… هذه الرسالة من ماجد ✨</p>
+      <div class="envelope-title">NO DISTANCE</div>
+
+      <!-- الرسالة -->
+      <div class="letter" id="letter">
+        <div class="letter-inner">
+          <!-- وجه الرسالة -->
+          <div class="letter-side front">
+            <div class="letter-greeting">hello, this message from majd</div>
+            <div class="letter-small">مجرد تذكير صغير إنّك شخص يعني لي الكثير.</div>
+            <div class="letter-small">اضغطي على الورقة لتشوفي الرسالة الكاملة 💌</div>
+            <div class="letter-name">- مجد</div>
+          </div>
+
+          <!-- ظهر الرسالة -->
+          <div class="letter-side back">
+            <div class="letter-back-title">من مجد إلى من سكنت القلب</div>
+            <div class="letter-back-text">
+              من بين كل الطرق اللي مشيت فيها، كان طريقك أنت هو الطريق الوحيد اللي
+              حسّسني إنّي وصلت. وصلت لراحة ما عرفتها من قبل، وطمأنينة ما لمستها،
+              وحب ما مرّ على قلبي مثله أبداً.<br><br>
+              كل مرة أتكلم معك أنسى تعب اليوم كله، وكل ضيقة فيني تهدأ،
+              وكأنك المكان اللي يطيح فيه كل هم وأطلع منه وأنا أخفّ وأقوى في نفس الوقت.
+              وجودك مو بس يغيّر يومي، وجودك يغيّر نظرتي لنفسي وللحياة كلها.<br><br>
+              يمكن الكلمات ما تكفي، بس حبيت أكتب هالشي عشان لما تفتحين هالرسالة
+              تتذكرين إن في شخص يشوفك نعمة، ويحمد ربه عليك في كل مرّة تخطرين على باله،
+              وفي كل مرة يسمع اسمك، وفي كل مرة يحس بقلبه يطمن فجأة بدون سبب واضح.<br><br>
+              لوك بعيدة أو قريبة، لو الأيام تلهينا أو الظروف تحاول تبعدنا،
+              يظل في قلبي مكان ما يشغله أحد غيرك، ومكان ما يعرف إلا اسمك أنت.
+              <br><br>
+              منِّي لك: لا مسافات، ولا مسافات، ولا مسافات.. بس أنا وأنت، وخط مستقيم
+              من قلبي لقلبك، ما ينقطع أبدًا.
+              <br><br>
+              محبّك دائماً،<br>
+              مجد 💌
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint">
+        <span>اضغط على الظرف ليفتح، ثم اضغط على الورقة لتقلِّبها.</span>
+      </div>
     </div>
-    
-<!-- الانيميشن عند الضغط -->
-<div id="heart-container"></div>
+  </div>
 
-    <script src="script.js"></script>
+  <script>
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("letter");
+
+    let isOpen = false;
+
+    // فتح الظرف
+    envelope.addEventListener("click", function () {
+      if (!isOpen) {
+        envelope.classList.add("open");
+        isOpen = true;
+      }
+    });
+
+    // تقليب الورقة للأمام / الخلف
+    letter.addEventListener("click", function (event) {
+      event.stopPropagation(); // لا يكرر كليك الظرف
+      if (!isOpen) return;
+      letter.classList.toggle("flipped");
+    });
+  </script>
 </body>
 </html>
